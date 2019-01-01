@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link href="{% static 'chat/index.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'chat/bootstrap.css' %}" rel="stylesheet" >
+<link href="{% static 'chat/bootstrap.min.css' %}" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Peak</title>
+</head>
+<body>
+  <!-- Image and text -->
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand" id="logo" href="{% url 'index' %}"><h2>Peak</h2></a>
+    <a class="navbar-brand" href="https://github.com/AmaanSingh">
+    <img src="{% static 'chat/svg/github.svg' %}" width="30" height="30"></a>
+  </nav>
+</div>
+<header>
+<div class="jumbotron bg-white">
+  <div class="row">
+  <div class="col-lg-6">
+    <h1 class="display-4" id="Here">New Here? Dope!</h1>
+    <hr color="#3FC7FF" width="10%" align="left">
+    <p class="lead">Peak is a chat based app to connect with your friends as well with new strangers. Just create an account.</p>
+  </div>
+  <div id="Sign_up" class="col-lg-6">
+  <form name="form1" class="px-4 py-5" class="site-form" action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="Firstname">First Name</label>
+      <input type="text" class="form-control" name="Firstname" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <label for="Lastname">Last Name</label>
+      <input type="text" class="form-control" name="Lastname" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" name="email1" placeholder="email@example.com">
+    </div>
+    <div class="form-group">
+      <label for="username1">Username</label>
+      <input type="text" class="form-control" name="username1" placeholder="Username">
+    </div>
+    <label for="password1">Password</label>
+    <input type="password" name="password1" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Password">
+    <small id="password2" class="form-text text-muted">
+      Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+    </small>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+  {% if message %}
+      <p id="message">
+          {{ message }}
+      </p>
+  {% endif %}
+    <div class="dropdown-divider"></div>
+      <a class="dropdown-item" id=log href="{% url 'index' %}">Have an account? Log in</a>
+      <a class="dropdown-item" id=forgot href="#">Forgot password?</a>
+  </div>
+  </div>
+</div>
+</header>
+<footer>
+<div id="footer">
+  <div class="container text-center">
+    <p>&copy; 2018 Peak. Design by <a href="https://www.instagram.com/amaansingh160/" rel="nofollow">Amaan Singh</a></p>
+  </div>
+</div>
+</footer>
+</body>
+</html>

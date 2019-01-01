@@ -1,0 +1,33 @@
+{% extends "chat/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'chat/css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'chat/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'chat/css/bootstrap.min.css' %}">
+
+{% block body %}
+  <div class="row">
+    <div class="col-lg-auto" id="peak">
+      <h2>Peak</h2>
+      <hr id="line">
+      <ul class="nav navbar-nav navbar-left">
+        <button><a href="#" class><h3>Programmer's Club</h3></a></button>
+        <li><a href="#services" class="page-scroll">Services</a></li>
+        <li><a href="#portfolio" class="page-scroll">Gallery</a></li>
+        <li><a href="#testimonials" class="page-scroll">Fans</a></li>
+        <li><a href="#team" class="page-scroll">Team</a></li>
+        <li><a href="#contact" class="page-scroll">Contact</a></li>
+      </ul>
+  </div>
+    <div class="col" id="heading">
+      <h2>Messages</h2>
+    </div>
+    <div class="col-lg-auto" id="compose">
+      <h1> Team </h1>
+    </div>
+  </div>
+  <div class="container" >
+    <h1>Hello, {{user}}</h1>
+  </div>
+  <button><a href="{% url 'logout' %}">Logout</button></a>
+  {% endblock %}

@@ -1,0 +1,53 @@
+{% extends "chat/base.html" %}
+{% load static %}
+{% block body %}
+  <!-- Image and text -->
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand" href="{% url 'index' %}"><h2>Peak</h2></a>
+    <a class="navbar-brand" href="https://github.com/AmaanSingh">
+    <img src="{% static 'chat/svg/github.svg' %}" width="30" height="30"></a>
+  </nav>
+</div>
+<header>
+<div class="jumbotron bg-white">
+  <div class="row">
+  <div class="col-lg-6">
+    <h1 class="display-4" id="logo">Project Peak</h1>
+    <hr color="#FF4470" width="10%" align="left">
+    <p class="lead">Chat based app where a connection is instantly created between new strangers</p>
+  </div>
+
+  <div id="form" class="col-lg-6">
+  <form class="px-4 py-5" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="username">Username or Email</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="Username or Email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </form>
+  {% if message %}
+      <p id="message">
+          {{ message }}
+      </p>
+  {% endif %}
+    <div class="dropdown-divider"></div>
+      <a class="dropdown-item" id=new href="#">New around here? Sign up</a>
+      <a class="dropdown-item" id=forgot href="#">Forgot password?</a>
+  </div>
+  </div>
+</div>
+</header>
+<footer>
+<div id="footer">
+  <div class="container text-center">
+    <p>&copy; 2018 Peak. Design by <a href="https://www.instagram.com/amaansingh160/" rel="nofollow">Amaan Singh</a></p>
+  </div>
+</div>
+</footer>
+{% endblock %}

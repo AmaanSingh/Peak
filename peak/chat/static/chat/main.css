@@ -1,0 +1,37 @@
+body,html{
+  font-family: 'Google Sans', 'Roboto', 'Noto', sans-serif
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	font-weight: 300;
+	width: 100% !important;
+	height: 100vh !important;
+  background-color: white;
+}
+#peak{
+  color: #FF4470;
+  background: white;
+  text-align: center;
+  height: 100vh;
+  margin-left: 2px;
+  margin-right: -10px;
+}
+#heading{
+  background: lightblue;
+  text-align: center;
+  height: 100vh;
+}
+#compose{
+  background: orange;
+  height: 100vh;
+
+}
+#line{
+  width: 40px;
+  height: 100;
+  size: 100;
+  length: 100;
+
+}
