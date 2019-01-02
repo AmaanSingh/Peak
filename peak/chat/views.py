@@ -27,7 +27,7 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "chat/index.html", {"message": "Invalid credentials."})
+            return render(request, "chat/index.html", {"message": "The username or password you've entered doesn't match any account."})
 
 def logout_view(request):
             logout(request)
@@ -51,3 +51,6 @@ def signup_view(request):
                 return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, "chat/new.html", {"message": "Sorry, this account is already created."})
+
+def reset_view(request):
+    return render(request, "chat/forget.html")

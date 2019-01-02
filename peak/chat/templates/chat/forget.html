@@ -11,7 +11,6 @@
 <title>Peak</title>
 </head>
 <body>
-  <!-- Image and text -->
 <div class="container-fluid">
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand" id="logo" href="{% url 'index' %}"><h2>Peak</h2></a>
@@ -23,31 +22,25 @@
 <div class="jumbotron bg-white">
   <div class="row">
   <div class="col-lg-6">
-    <h1 class="display-4" id="index">Project Peak</h1>
-    <hr color="#FF4470" width="10%" align="left">
-    <p class="lead">Chat based app where a connection is instantly created between new strangers</p>
+    <h1 class="display-4" id=forgotten>Forgot your Password? That's Ok</h1>
+    <hr color="#AF6AFF" width="10%" align="left">
+    <p class="lead">Fill out the form on your right to help us help you retrieve your account.</p>
   </div>
-  <div id="form" class="col-lg-6">
-  <form class="px-4 py-5" action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
+  <div id="link" class="col-lg-6">
+  <form class="px-4 py-5">
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name3" id="name3" placeholder="Full Name">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+      <label for="exampleDropdownFormEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
     </div>
-    <button type="submit" class="btn btn-primary">Log in</button>
+    <button type="submit" class="btn btn-primary">Send Login Link</button>
   </form>
-  {% if message %}
-      <p id="message">
-          {{ message }}
-      </p>
-  {% endif %}
-    <div class="dropdown-divider"></div>
+    <div id= links class="dropdown-divider"></div>
+      <a class="dropdown-item" id=log href="{% url 'index' %}">Have an account? Log in</a>
       <a class="dropdown-item" id=new href="{% url 'signup' %}">New around here? Sign up</a>
-      <a class="dropdown-item" id=forgot href="{% url 'forget' %}">Forgot password?</a>
   </div>
   </div>
 </div>
