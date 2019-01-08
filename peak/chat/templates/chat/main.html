@@ -1,11 +1,16 @@
-{% extends "chat/base.html" %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'chat/css/main.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'chat/css/bootstrap.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'chat/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'chat/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'chat/bootstrap.css' %}">
 
-{% block body %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Peak</title>
+</head>
+<body>
   <div class="row">
     <div class="col-lg-auto" id="peak">
       <h2>Peak</h2>
@@ -30,4 +35,7 @@
     <h1>Hello, {{user}}</h1>
   </div>
   <button><a href="{% url 'logout' %}">Logout</button></a>
-  {% endblock %}
+</div>
+</body>
+</html>
+

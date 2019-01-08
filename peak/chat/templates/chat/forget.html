@@ -3,14 +3,15 @@
 <head>
 {% load static %}
 <link href="{% static 'chat/index.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'chat/bootstrap.css' %}" rel="stylesheet" >
-<link href="{% static 'chat/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'chat/bootstrap.css' %}" rel="stylesheet">
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Peak</title>
 </head>
 <body>
+
 <div class="container-fluid">
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand" id="logo" href="{% url 'index' %}"><h2>Peak</h2></a>
@@ -30,11 +31,7 @@
   <form class="px-4 py-5">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" name="name3" id="name3" placeholder="Full Name">
-    </div>
-    <div class="form-group">
-      <label for="exampleDropdownFormEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+      <input type="text" class="form-control" name="name3" id="name3" placeholder="Full Name" required>
     </div>
     <button type="submit" class="btn btn-primary">Send Login Link</button>
   </form>

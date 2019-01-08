@@ -3,7 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.core.validators import validate_email
+from django.db import IntegrityError
+from django.views.decorators.debug import sensitive_post_parameters
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ def index(request):
         "user": request.user
     }
     return render(request, "chat/main.html", context)
-
+@sensitive_post_parameters("password")
 def login_view(request):
     if request.method == 'GET':
         return render(request, "chat/index.html")
@@ -33,6 +34,7 @@ def logout_view(request):
             logout(request)
             return render(request, "chat/index.html")
 
+@sensitive_post_parameters("password")
 def signup_view(request):
     if request.method == 'GET':
         return render(request, "chat/new.html")
@@ -42,15 +44,18 @@ def signup_view(request):
         email = request.POST["email1"]
         first_name = request.POST["Firstname"]
         last_name = request.POST["Lastname"]
-        user = authenticate(request, username=username,email=email,password=password, last_name=last_name, first_name= first_name)
-        
-        if user is None:
+        user = authenticate(request, username=username, email=email, password=password)
+
+        if user is not None:
+            return render(request, "chat/new.html", {"message": "Sorry, this account has already been created. If you have forggotten your password, proceed to the password reset page."})
+        try:
+            if user is None:
                 user = User.objects.create_user(username=username, password=password, email=email, last_name=last_name,first_name= first_name)
                 user.save()
                 login(request, user)
                 return HttpResponseRedirect(reverse("index"))
-        else:
-            return render(request, "chat/new.html", {"message": "Sorry, this account is already created."})
-
+        except IntegrityError as e:
+            return render(request, "chat/new.html", {"message": "Sorry, this username isn't available. Please try another."})
+       
 def reset_view(request):
     return render(request, "chat/forget.html")
