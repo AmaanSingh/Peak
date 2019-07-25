@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.views.decorators.debug import sensitive_post_parameters
+from .forms import UserRegisterForm
 
 # Create your views here.
 
@@ -36,26 +37,26 @@ def logout_view(request):
 
 @sensitive_post_parameters("password")
 def signup_view(request):
-    if request.method == 'GET':
-        return render(request, "chat/new.html")
     if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
         username = request.POST["username1"]
         password = request.POST["password1"]
-        email = request.POST["email1"]
         first_name = request.POST["Firstname"]
         last_name = request.POST["Lastname"]
-        user = authenticate(request, username=username, email=email, password=password)
-
+        user = authenticate(request, username=username, password=password)
+        if form.is_valid():
+            form.save()
         if user is not None:
-            return render(request, "chat/new.html", {"message": "Sorry, this account has already been created. If you have forggotten your password, proceed to the password reset page."})
+            return render(request, "chat/new.html", {"message": "Sorry, this account has already been created. If you have forgotten your password, proceed to the password reset page."})
         try:
             if user is None:
-                user = User.objects.create_user(username=username, password=password, email=email, last_name=last_name,first_name= first_name)
+                user = User.objects.create_user(username=username, password=password, last_name=last_name,first_name= first_name)
                 user.save()
                 login(request, user)
                 return HttpResponseRedirect(reverse("index"))
         except IntegrityError as e:
             return render(request, "chat/new.html", {"message": "Sorry, this username isn't available. Please try another."})
-       
+    return render(request, 'chat/new.html', {'form': UserRegisterForm})
+
 def reset_view(request):
     return render(request, "chat/forget.html")
